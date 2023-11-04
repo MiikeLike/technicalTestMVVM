@@ -6,7 +6,7 @@
 //
 import UIKit
 import Alamofire
-import SwiftyJSON
+
 
 struct Character: Codable {
     let name: String
