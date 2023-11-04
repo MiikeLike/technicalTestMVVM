@@ -8,9 +8,17 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct Character: Codable { 
+struct Character: Codable {
     let name: String
 }
+struct CharacterResponse: Codable {
+    let results: [Character]
+}
+class DetailViewController: UIViewController {
+    var character: Character?
+}
+
+
 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +39,7 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
             case .success(let value):
                 do {
                     let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-                    self.characters = try JSONDecoder().decode([Character].self, from: data)
+                    self.characters = try JSONDecoder().decode(CharacterResponse.self, from: data).results
                     self.tableView.reloadData()
                 } catch {
                     print(error)
@@ -57,11 +65,11 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         performSegue(withIdentifier: "ShowCharacterDetail", sender: character)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowCharacterDetail" {
-            if let detailVC = segue.destination as? DetailViewController {
-                detailVC.character = sender as? Character
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "ShowCharacterDetail" {
+                if let detailVC = segue.destination as? DetailViewController {
+                    detailVC.character = sender as? Character
+                }
             }
         }
-    }
 }

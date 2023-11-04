@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E4E400E43559611A799059F /* Pods_technicalTestUIkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB5DE06D03E487BCEE7F00D /* Pods_technicalTestUIkit.framework */; };
+		6E8B78622AF67B5F0061B57C /* RickMortySwiftApi in Frameworks */ = {isa = PBXBuildFile; productRef = 6E8B78612AF67B5F0061B57C /* RickMortySwiftApi */; };
 		6ED8E5602AF5728E0014031C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED8E55F2AF5728E0014031C /* AppDelegate.swift */; };
 		6ED8E5622AF5728E0014031C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED8E5612AF5728E0014031C /* SceneDelegate.swift */; };
 		6ED8E5642AF5728E0014031C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED8E5632AF5728E0014031C /* ViewController.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E8B78622AF67B5F0061B57C /* RickMortySwiftApi in Frameworks */,
 				2E4E400E43559611A799059F /* Pods_technicalTestUIkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +142,6 @@
 				A3847E8755DA6B09EE030B60 /* Pods-technicalTestUIkit.debug.xcconfig */,
 				7ABA4339818ABC244427D0C5 /* Pods-technicalTestUIkit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -170,6 +171,9 @@
 			dependencies = (
 			);
 			name = technicalTestUIkit;
+			packageProductDependencies = (
+				6E8B78612AF67B5F0061B57C /* RickMortySwiftApi */,
+			);
 			productName = technicalTestUIkit;
 			productReference = 6ED8E55C2AF5728E0014031C /* technicalTestUIkit.app */;
 			productType = "com.apple.product-type.application";
@@ -242,6 +246,9 @@
 				Base,
 			);
 			mainGroup = 6ED8E5532AF5728E0014031C;
+			packageReferences = (
+				6E8B78602AF67B5F0061B57C /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */,
+			);
 			productRefGroup = 6ED8E55D2AF5728E0014031C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,7 +429,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -485,7 +492,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -678,6 +685,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E8B78602AF67B5F0061B57C /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/benjaminbruch/Rick-and-Morty-Swift-API";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E8B78612AF67B5F0061B57C /* RickMortySwiftApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E8B78602AF67B5F0061B57C /* XCRemoteSwiftPackageReference "Rick-and-Morty-Swift-API" */;
+			productName = RickMortySwiftApi;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6ED8E5542AF5728E0014031C /* Project object */;
 }
