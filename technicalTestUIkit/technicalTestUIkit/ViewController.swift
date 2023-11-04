@@ -8,7 +8,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct Character: Codable { // Cambié el nombre de la estructura de "nombre" a "Character" para seguir convenciones de nomenclatura.
+struct Character: Codable { 
     let name: String
 }
 
