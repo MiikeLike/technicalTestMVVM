@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:technicalTestUIkit.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:technicalTestUIkit"
+      name = "technicalTestUIkit">
+      <FileRef
+         location = "group:technicalTestUIkit/AppDelegate.swift">
+      </FileRef>
+      <FileRef
+         location = "group:technicalTestUIkit/SceneDelegate.swift">
+      </FileRef>
+      <FileRef
+         location = "group:technicalTestUIkit/ViewController.swift">
+      </FileRef>
+      <Group
+         location = "group:technicalTestUIkit"
+         name = "Main.storyboard">
+         <FileRef
+            location = "group:technicalTestUIkit/Base.lproj/Main.storyboard">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:technicalTestUIkit/Assets.xcassets">
+      </FileRef>
+      <Group
+         location = "group:technicalTestUIkit"
+         name = "LaunchScreen.storyboard">
+         <FileRef
+            location = "group:technicalTestUIkit/Base.lproj/LaunchScreen.storyboard">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:technicalTestUIkit/Info.plist">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

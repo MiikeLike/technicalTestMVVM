@@ -1,0 +1,8 @@
+platform :ios, '12.0'
+use_frameworks!
+
+target 'technicalTestUIkit' do
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+end
+

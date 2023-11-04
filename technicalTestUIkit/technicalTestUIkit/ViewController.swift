@@ -5,59 +5,63 @@
 //  Created by Mikel Valle on 3/11/23.
 //
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-struct Nombre: Codable {
-    var name: String
+struct nombre: Codable {
+    let name: String
 }
 
-class ViewController: UIViewController {
+class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     @IBOutlet weak var tableView: UITableView!
-    private var nombres: [Nombre] = []
+    
+    var characters = Character
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fetchNombres()
+        tableView.dataSource = self
+        tableView.delegate = self
+        loadCharacters()
     }
 
-    func fetchNombres() {
-        guard let url = URL(string: "https://api.github.com/repos/usuario/repo/contents/nombres.json") else {
-            return
-        }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-
-            do {
-                self.nombres = try JSONDecoder().decode([Nombre].self, from: data)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+    func loadCharacters() {
+        AF.request("https://api.github.com/repos/{user}/{repo}/contents/{file}", method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                json.array?.forEach { item in
+                    let character = Character(name: item["name"].stringValue)
+                    self.characters.append(character)
                 }
-            } catch {
-                print("Error decoding data: \(error)")
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
-        }.resume()
+        }
     }
-}
 
-extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nombres.count
+        return characters.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let nombre = nombres[indexPath.row]
-        cell.textLabel?.text = nombre.name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath)
+        cell.textLabel?.text = characters[indexPath.row].name
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = characters[indexPath.row]
+        performSegue(withIdentifier: "ShowCharacterDetail", sender: character)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowCharacterDetail" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.character = sender as? Character
+        }
     }
 }
 
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Puedes agregar acciones al seleccionar una fila si es necesario.
-    }
-}
 
