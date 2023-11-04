@@ -15,6 +15,7 @@ struct Character: Codable { // Cambié el nombre de la estructura de "nombre" a 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    
     var characters: [Character] = [] // Declaración de un array para almacenar personajes.
 
     override func viewDidLoad() {
@@ -25,15 +26,16 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     func loadCharacters() {
-        AF.request("https://api.github.com/repos/{user}/{repo}/contents/{file}", method: .get).validate().responseJSON { response in
+        AF.request("https://rickandmortyapi.com/api/character", method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                json.array?.forEach { item in
-                    let character = Character(name: item["name"].stringValue)
-                    self.characters.append(character)
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    self.characters = try JSONDecoder().decode([Character].self, from: data)
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
                 }
-                self.tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
