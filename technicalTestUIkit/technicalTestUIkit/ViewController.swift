@@ -8,15 +8,14 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct nombre: Codable {
+struct Character: Codable { // Cambié el nombre de la estructura de "nombre" a "Character" para seguir convenciones de nomenclatura.
     let name: String
 }
 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
     @IBOutlet weak var tableView: UITableView!
     
-    var characters = Character
+    var characters: [Character] = [] // Declaración de un array para almacenar personajes.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +57,9 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowCharacterDetail" {
-            let detailVC = segue.destination as! DetailViewController
-            detailVC.character = sender as? Character
+            if let detailVC = segue.destination as? DetailViewController {
+                detailVC.character = sender as? Character
+            }
         }
     }
 }
-
-
