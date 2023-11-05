@@ -36,11 +36,68 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="15e-HU-qvp" id="TlK-w5-KSp"/>
+                        <segue destination="eE1-7I-2Iv" kind="showDetail" identifier="ShowCharacterDetail" id="5pO-Tt-f9F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="vZA-cw-UWG">
+            <objects>
+                <viewController id="eE1-7I-2Iv" customClass="SecondViewController" customModule="technicalTestUIkit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lOE-uN-nEW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-uD-SEj">
+                                <rect key="frame" x="16" y="50" width="361" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="361" id="eZz-MK-lXU"/>
+                                    <constraint firstAttribute="height" constant="175" id="fK9-8r-7ak"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOX-3T-XMB">
+                                <rect key="frame" x="16" y="268" width="179" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFX-yw-p22">
+                                <rect key="frame" x="16" y="337" width="179" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCY-ui-Jdy">
+                                <rect key="frame" x="16" y="411" width="179" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eiJ-Hb-4Hd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CcY-uD-SEj" firstAttribute="leading" secondItem="eiJ-Hb-4Hd" secondAttribute="leading" constant="16" id="Gbz-Pp-Uwr"/>
+                            <constraint firstItem="eiJ-Hb-4Hd" firstAttribute="trailing" secondItem="CcY-uD-SEj" secondAttribute="trailing" constant="16" id="qOM-pq-sVS"/>
+                            <constraint firstItem="CcY-uD-SEj" firstAttribute="top" secondItem="eiJ-Hb-4Hd" secondAttribute="top" constant="50" id="z62-KH-LnB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="characterImageView" destination="CcY-uD-SEj" id="2sn-Tv-3ar"/>
+                        <outlet property="nameLabel" destination="kOX-3T-XMB" id="5i7-zP-KpT"/>
+                        <outlet property="speciesLabel" destination="XCY-ui-Jdy" id="3I0-dN-37U"/>
+                        <outlet property="statusLabel" destination="RFX-yw-p22" id="zEH-Cu-X4S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Sw-WO-NOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919.84732824427476" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>

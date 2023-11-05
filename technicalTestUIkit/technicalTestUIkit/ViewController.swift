@@ -11,11 +11,9 @@ import Alamofire
 struct Character: Codable {
     let name: String
     let id: Int64
-    
-    init(name: String, id: Int64) {
-        self.name = name
-        self.id = id
-    }
+    let status: String
+    let species: String
+    let image: String
 }
 struct CharacterResponse: Codable {
     let results: [Character]
@@ -26,6 +24,7 @@ class DetailViewController: UIViewController {
 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+
     var characters: [Character] = [] // Declaración de un array para almacenar personajes.
 
     override func viewDidLoad() {
@@ -35,7 +34,6 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CharacterCell")
         loadCharacters()
     }
-
     func loadCharacters() {
         AF.request("https://rickandmortyapi.com/api/character", method: .get).validate().responseJSON { response in
             switch response.result {
