@@ -36,7 +36,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="15e-HU-qvp" id="TlK-w5-KSp"/>
-                        <segue destination="eE1-7I-2Iv" kind="showDetail" identifier="ShowCharacterDetail" id="5pO-Tt-f9F"/>
+                        <segue destination="eE1-7I-2Iv" kind="show" identifier="ShowCharacterDetail" id="5pO-Tt-f9F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,11 +88,12 @@
                             <constraint firstItem="CcY-uD-SEj" firstAttribute="top" secondItem="eiJ-Hb-4Hd" secondAttribute="top" constant="50" id="z62-KH-LnB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ixE-Hr-6bc"/>
                     <connections>
-                        <outlet property="characterImageView" destination="CcY-uD-SEj" id="2sn-Tv-3ar"/>
-                        <outlet property="nameLabel" destination="kOX-3T-XMB" id="5i7-zP-KpT"/>
-                        <outlet property="speciesLabel" destination="XCY-ui-Jdy" id="3I0-dN-37U"/>
-                        <outlet property="statusLabel" destination="RFX-yw-p22" id="zEH-Cu-X4S"/>
+                        <outlet property="characterImageView" destination="CcY-uD-SEj" id="h00-jv-UqH"/>
+                        <outlet property="nameLabel" destination="kOX-3T-XMB" id="TIg-K3-f9Y"/>
+                        <outlet property="speciesLabel" destination="XCY-ui-Jdy" id="q16-Kb-GX6"/>
+                        <outlet property="statusLabel" destination="RFX-yw-p22" id="QSU-Uv-m64"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Sw-WO-NOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

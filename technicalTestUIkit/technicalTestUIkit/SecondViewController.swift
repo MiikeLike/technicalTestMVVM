@@ -9,7 +9,9 @@ import UIKit
 import Alamofire
 
 
+
 class SecondViewController: UIViewController {
+    let SecondViewController = DetailViewController()
     var character: Character?
 
     @IBOutlet weak var characterImageView: UIImageView!
