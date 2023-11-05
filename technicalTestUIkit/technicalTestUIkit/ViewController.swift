@@ -10,6 +10,12 @@ import Alamofire
 
 struct Character: Codable {
     let name: String
+    let id: Int64
+    
+    init(name: String, id: Int64) {
+        self.name = name
+        self.id = id
+    }
 }
 struct CharacterResponse: Codable {
     let results: [Character]
@@ -18,18 +24,15 @@ class DetailViewController: UIViewController {
     var character: Character?
 }
 
-
-
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-    
-    
     var characters: [Character] = [] // Declaración de un array para almacenar personajes.
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CharacterCell")
         loadCharacters()
     }
 
