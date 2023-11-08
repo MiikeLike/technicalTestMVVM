@@ -24,53 +24,42 @@ class DetailViewController: UIViewController {
 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-
-    var characters: [Character] = [] // Declaración de un array para almacenar personajes.
+    
+    let charactersViewModel = CharactersViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CharacterCell")
-        loadCharacters()
-    }
-    func loadCharacters() {
-        AF.request("https://rickandmortyapi.com/api/character", method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-                    self.characters = try JSONDecoder().decode(CharacterResponse.self, from: data).results
-                    self.tableView.reloadData()
-                } catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
+        charactersViewModel.fetchCharacters {
+            self.tableView.reloadData()
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        return charactersViewModel.characters.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell", for: indexPath)
-        cell.textLabel?.text = characters[indexPath.row].name
+        let character = charactersViewModel.characters[indexPath.row]
+        cell.textLabel?.text = character.name
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characters[indexPath.row]
+        let character = charactersViewModel.characters[indexPath.row]
         performSegue(withIdentifier: "ShowCharacterDetail", sender: character)
     }
 
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "ShowCharacterDetail" {
-                if let detailVC = segue.destination as? SecondViewController {
-                    detailVC.character = sender as? Character
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowCharacterDetail" {
+            if let detailVC = segue.destination as? CharacterDetailViewModel {
+                if let character = sender as? CharacterViewModel {
+                    detailVC.CharacterViewModel = character
                 }
             }
         }
+    }
 }
