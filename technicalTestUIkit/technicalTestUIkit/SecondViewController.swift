@@ -32,7 +32,9 @@ class SecondViewController: UIViewController {
             switch response.result {
             case .success(let data):
                 let image = UIImage(data: data)
-                self.characterImageView.image = image
+                DispatchQueue.main.async {
+                    self.characterImageView.image = image
+                }
             case .failure(let error):
                 print(error)
             }

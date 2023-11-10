@@ -61,4 +61,3 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-
