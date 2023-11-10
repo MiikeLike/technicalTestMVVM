@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class CharactersViewModel {
-    var characters: [CharacterViewModel] = []
+    var characters: [Character] = []
     
     func fetchCharacters(completion: @escaping () -> Void) {
         AF.request("https://rickandmortyapi.com/api/character", method: .get).validate().responseJSON { response in
@@ -17,39 +17,16 @@ class CharactersViewModel {
             case .success(let value):
                 do {
                     let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
-                    self.CharactersViewModel = try JSONDecoder().decode(CharacterResponse.self, from: data).results
-                    self.tableView.reloadData()
+                    self.characters = try JSONDecoder().decode(CharacterResponse.self, from: data).results
+                    completion() // Llama a la clausura de finalización cuando se cargan los personajes.
                 } catch {
                     print(error)
                 }
             case .failure(let error):
                 print(error)
             }
+            completion()
         }
-    }
-}
-
-class CharacterViewModel {
-    let character: Character
-    
-    init(character: Character) {
-        self.character = character
-    }
-    
-    var name: String {
-        return character.name
-    }
-    
-    var status: String {
-        return character.status
-    }
-    
-    var species: String {
-        return character.species
-    }
-    
-    var image: String {
-        return character.image
     }
 }
 

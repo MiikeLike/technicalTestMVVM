@@ -55,11 +55,10 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowCharacterDetail" {
-            if let detailVC = segue.destination as? CharacterDetailViewModel {
-                if let character = sender as? CharacterViewModel {
-                    detailVC.CharacterViewModel = character
+            if let detailVC = segue.destination as? SecondViewController {
+                detailVC.viewModel.character = sender as? Character
                 }
             }
         }
     }
-}
+

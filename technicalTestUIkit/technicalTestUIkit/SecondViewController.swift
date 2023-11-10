@@ -11,7 +11,7 @@ import Alamofire
 
 
 class SecondViewController: UIViewController {
-    var character: Character?
+    let viewModel = CharactersDetailViewModel()
 
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -20,7 +20,7 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let character = character else { return }
+        guard let character = viewModel.character else { return }
         nameLabel.text = character.name
         statusLabel.text = character.status
         speciesLabel.text = character.species
