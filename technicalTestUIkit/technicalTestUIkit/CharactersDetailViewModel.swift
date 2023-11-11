@@ -12,21 +12,23 @@ import Foundation
 class CharactersDetailViewModel {
     var character: Character?
     
-    func loadImage(completion: @escaping (Data?) -> Void) {
-        guard let character else {
-            completion(nil)
-            return
-        }
-        AF.request(character.image, method: .get).validate().responseData { response in
-            switch response.result{
-            case.success(let data):
-                completion(data)
-            case.failure(let error):
-                print(error)
+    func loadImage(for url: String, completion: @escaping (UIImage?) -> Void) {
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(image)
+                } else {
+                    print("Error: No se pudo convertir los datos en una imagen válida.")
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Error de carga de imagen: \(error.localizedDescription)")
                 completion(nil)
             }
         }
     }
 }
+
  
 

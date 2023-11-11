@@ -5,7 +5,7 @@
 //  Created by Mikel Valle on 3/11/23.
 //
 import UIKit
-import Alamofire
+
 
 
 struct Character: Codable {
