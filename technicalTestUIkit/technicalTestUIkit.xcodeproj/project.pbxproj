@@ -89,6 +89,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E5C82BD2B000B550039B5E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6E000EA02AFC277E00F143F8 /* CharactersViewModel.swift */,
+				6E000EA22AFC293300F143F8 /* CharactersDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6E5C82BE2B000B5F0039B5E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6ED8E5632AF5728E0014031C /* CharactersViewController.swift */,
+				6E8B78672AF816400061B57C /* SecondViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6ED8E5532AF5728E0014031C = {
 			isa = PBXGroup;
 			children = (
@@ -114,12 +132,10 @@
 		6ED8E55E2AF5728E0014031C /* technicalTestUIkit */ = {
 			isa = PBXGroup;
 			children = (
+				6E5C82BE2B000B5F0039B5E9 /* View */,
+				6E5C82BD2B000B550039B5E9 /* ViewModel */,
 				6ED8E55F2AF5728E0014031C /* AppDelegate.swift */,
 				6ED8E5612AF5728E0014031C /* SceneDelegate.swift */,
-				6ED8E5632AF5728E0014031C /* CharactersViewController.swift */,
-				6E000EA02AFC277E00F143F8 /* CharactersViewModel.swift */,
-				6E8B78672AF816400061B57C /* SecondViewController.swift */,
-				6E000EA22AFC293300F143F8 /* CharactersDetailViewModel.swift */,
 				6ED8E5652AF5728E0014031C /* Main.storyboard */,
 				6ED8E5682AF572910014031C /* Assets.xcassets */,
 				6ED8E56A2AF572910014031C /* LaunchScreen.storyboard */,

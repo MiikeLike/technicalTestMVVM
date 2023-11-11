@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class SecondViewController: UIViewController {
     let viewModel = CharactersDetailViewModel()
     

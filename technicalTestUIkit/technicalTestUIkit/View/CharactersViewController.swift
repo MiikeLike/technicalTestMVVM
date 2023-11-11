@@ -6,8 +6,6 @@
 //
 import UIKit
 
-
-
 struct Character: Codable {
     let name: String
     let id: Int64
