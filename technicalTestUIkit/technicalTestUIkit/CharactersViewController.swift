@@ -13,11 +13,9 @@ struct Character: Codable {
     let species: String
     let image: String
 }
+
 struct CharacterResponse: Codable {
     let results: [Character]
-}
-class DetailViewController: UIViewController {
-    var character: Character?
 }
 
 class CharactersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -47,6 +45,9 @@ class CharactersViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < charactersViewModel.characters.count else {
+            return
+        }
         let character = charactersViewModel.characters[indexPath.row]
         performSegue(withIdentifier: "ShowCharacterDetail", sender: character)
     }

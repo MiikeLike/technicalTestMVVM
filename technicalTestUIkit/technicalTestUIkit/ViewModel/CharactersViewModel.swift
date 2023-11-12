@@ -18,7 +18,6 @@ class CharactersViewModel {
                 do {
                     let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
                     self.characters = try JSONDecoder().decode(CharacterResponse.self, from: data).results
-                    completion() // Llama a la clausura de finalización cuando se cargan los personajes.
                 } catch {
                     print(error)
                 }

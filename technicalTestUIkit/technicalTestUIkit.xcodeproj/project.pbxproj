@@ -106,14 +106,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		6E5C82BF2B001F4C0039B5E9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6ED8E5632AF5728E0014031C /* CharactersViewController.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		6ED8E5532AF5728E0014031C = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +131,7 @@
 		6ED8E55E2AF5728E0014031C /* technicalTestUIkit */ = {
 			isa = PBXGroup;
 			children = (
-				6E5C82BF2B001F4C0039B5E9 /* Model */,
+				6ED8E5632AF5728E0014031C /* CharactersViewController.swift */,
 				6E5C82BE2B000B5F0039B5E9 /* View */,
 				6E5C82BD2B000B550039B5E9 /* ViewModel */,
 				6ED8E55F2AF5728E0014031C /* AppDelegate.swift */,
