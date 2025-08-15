@@ -8,7 +8,7 @@ Esta es una **prueba técnica** que demuestra la implementación del patrón arq
 
 - ✅ Implementar el patrón **MVVM** correctamente
 - ✅ Consumir una **API REST externa** (Rick and Morty)
-- ✅ Manejar **asincronía** y **gestión de errores**
+- ✅ Manejar **asincronía** y **gestión de errores básica**
 - ✅ Implementar **navegación** entre pantallas
 - ✅ Mostrar **listas** y **detalles** de personajes
 - ✅ Aplicar **buenas prácticas** de desarrollo iOS
@@ -22,14 +22,14 @@ Esta es una **prueba técnica** que demuestra la implementación del patrón arq
 │      View       │    │    ViewModel     │    │      Model      │
 │                 │    │                  │    │                 │
 │ ViewController  │◄──►│ CharactersVM     │◄──►│ Character       │
-│ DetailVC        │    │ DetailVM         │    │ Location        │
+│ DetailVC        │    │ DetailVM         │    │ (Struct local)  │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                               │
                               ▼
                        ┌──────────────────┐
-                       │  NetworkService  │
+                       │  Alamofire API   │
                        │                  │
-                       │ Alamofire + API  │
+                       │ Rick and Morty   │
                        └──────────────────┘
 ```
 
@@ -37,20 +37,16 @@ Esta es una **prueba técnica** que demuestra la implementación del patrón arq
 
 ```
 technicalTestUIkit/
-├── Model/
-│   └── Character.swift          # Modelos de datos
+├── CharactersViewController.swift    # Lista de personajes + Modelos
 ├── View/
-│   ├── CharactersViewController.swift    # Lista de personajes
-│   └── SecondViewController.swift        # Detalle del personaje
+│   └── SecondViewController.swift    # Detalle del personaje
 ├── ViewModel/
-│   ├── CharactersViewModel.swift         # Lógica de lista
-│   └── CharactersDetailViewModel.swift   # Lógica de detalle
-├── Services/
-│   └── NetworkService.swift             # Servicio de red
-└── Supporting Files/
-    ├── AppDelegate.swift
-    ├── SceneDelegate.swift
-    └── Storyboards
+│   ├── CharactersViewModel.swift     # Lógica de lista
+│   └── CharactersDetailViewModel.swift # Lógica de detalle
+├── Supporting Files/
+│   ├── AppDelegate.swift
+│   ├── SceneDelegate.swift
+│   └── Storyboards
 ```
 
 ## 🛠️ Tecnologías Utilizadas
@@ -65,23 +61,19 @@ technicalTestUIkit/
 
 ### 1. Lista de Personajes (`CharactersViewController`)
 - ✅ Carga asíncrona de personajes desde la API
-- ✅ Paginación automática (scroll infinito)
-- ✅ Pull-to-refresh para actualizar datos
-- ✅ Indicador de carga (Activity Indicator)
-- ✅ Manejo de errores con alertas
+- ✅ Estructura de datos `Character` con propiedades básicas
 - ✅ Navegación a detalle del personaje
+- ✅ Integración directa con Alamofire
 
 ### 2. Detalle del Personaje (`SecondViewController`)
-- ✅ Información completa del personaje seleccionado
+- ✅ Información básica del personaje seleccionado
 - ✅ Carga asíncrona de imagen del personaje
-- ✅ Manejo de errores en carga de imágenes
-- ✅ UI responsive y bien estructurada
+- ✅ UI simple pero funcional
 
-### 3. Servicios de Red (`NetworkService`)
-- ✅ Cliente HTTP con Alamofire
-- ✅ Decodificación JSON automática
-- ✅ Manejo de errores de red
-- ✅ Singleton pattern para reutilización
+### 3. ViewModels
+- ✅ **CharactersViewModel**: Maneja la lista de personajes
+- ✅ **CharactersDetailViewModel**: Maneja la carga de imágenes
+
 
 
 ### Prerrequisitos
@@ -90,37 +82,47 @@ technicalTestUIkit/
 - CocoaPods instalado
 
 
-## 🧪 Casos de Uso
-
 ### Flujo Principal
 1. **Inicio**: La app carga la lista de personajes
 2. **Navegación**: Usuario selecciona un personaje
-3. **Detalle**: Se muestra información completa del personaje
+3. **Detalle**: Se muestra información básica del personaje
 4. **Navegación**: Usuario puede regresar a la lista
 
 ### Características Técnicas
-- **Asincronía**: Todas las operaciones de red son asíncronas
-- **Manejo de Errores**: Alertas informativas para errores de red
-- **Performance**: Paginación para manejar grandes cantidades de datos
-- **UX**: Indicadores de carga y pull-to-refresh
+- **Asincronía**: Operaciones de red asíncronas con Alamofire
+- **Manejo de Errores**: Logs básicos en consola
+- **Decodificación JSON**: Uso de `Codable` para parsing
+- **Navegación**: Segues entre pantallas
 
 ## 🔍 Puntos Destacados de la Implementación
 
 ### 1. Separación de Responsabilidades (MVVM)
-- **Model**: Estructuras de datos puras (`Character`, `Location`)
-- **View**: Controllers que solo manejan UI
-- **ViewModel**: Lógica de negocio y estado de la UI
+- **Model**: Estructura `Character` con propiedades básicas
+- **View**: Controllers que manejan UI y navegación
+- **ViewModel**: Lógica de negocio para datos e imágenes
 
-### 2. Networking Robusto
-- **Singleton Service**: `NetworkService.shared`
-- **Error Handling**: Enum `NetworkError` personalizado
+### 2. Networking Básico
+- **Alamofire**: Cliente HTTP para llamadas a la API
 - **Decodificación**: Uso de `Codable` para JSON
+- **Asincronía**: Completions para manejar respuestas
 
-### 3. UI/UX Profesional
-- **Navegación**: Títulos grandes y jerarquía clara
-- **Feedback**: Activity indicators y pull-to-refresh
-- **Responsive**: Manejo de diferentes tamaños de pantalla
+### 3. Estructura del Proyecto
+- **Organización**: Carpetas separadas por responsabilidad
+- **Navegación**: Segues configurados en Storyboard
+- **Dependencias**: CocoaPods para gestión de librerías
 
+## 🚀 Mejoras Futuras (Para Implementar)
+
+- [ ] **Manejo de Errores**: Alertas para errores de red
+- [ ] **Loading States**: Indicadores de carga
+- [ ] **Pull-to-Refresh**: Actualización manual de datos
+- [ ] **Paginación**: Carga de más personajes
+- [ ] **Cache de Imágenes**: Evitar recargar imágenes
+- [ ] **Tests Unitarios**: Con XCTest
+- [ ] **UI Tests**: Automatizados
+- [ ] **Manejo de Estados**: Estados de carga, error, éxito
+- [ ] **Validación de Datos**: Verificación de respuestas de API
+- [ ] **Logging**: Sistema de logs más robusto
 
 ## 📚 Recursos de Referencia
 
@@ -141,5 +143,6 @@ Este proyecto es una prueba técnica y está destinado únicamente para fines de
 
 <div align="center">
   <p><strong>¡Gracias por revisar mi prueba técnica! 🎉</strong></p>
-  <p>Espero que demuestre mis habilidades en desarrollo iOS y arquitectura MVVM.</p>
+  <p>Esta es una implementación básica pero funcional de MVVM que demuestra los conceptos fundamentales.</p>
+  <p>Las mejoras futuras están documentadas para implementación posterior.</p>
 </div>
